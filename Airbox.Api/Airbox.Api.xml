@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Airbox.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Airbox.Api.Controllers.UsersLocationsController">
+            <summary>
+            Read current and historic user locations, and add new user locations.
+            </summary>
+        </member>
+        <member name="M:Airbox.Api.Controllers.UsersLocationsController.GetAsync">
+            <summary>
+            Get a list of historic locations for a given user or get the current location of either the given user or for all users. Note that full history for all users is not supported so an empty list is returned.
+            </summary>
+            <returns>One or more users with a list of locations for each. Current locations are represented as a list with one entry.</returns>
+        </member>
+        <member name="M:Airbox.Api.Controllers.UsersLocationsController.GetAsync(System.String,System.Int32)">
+            <summary>
+            Get a list of historic locations for a given user or get the current location of either the given user or for all users. Note that full history for all users is not supported so an empty list is returned.
+            </summary>
+            <param name="username">A username matched as a case-sensitive string identifier.</param>
+            <param name="current">An integer which when set to the value 1 causes only the current location to be returned. Otherwise, an ordered history is returned but only when a username is given.</param>
+            <returns>One or more users with a list of locations for each. Current locations are represented as a list with one entry.</returns>
+        </member>
+        <member name="M:Airbox.Api.Controllers.UsersLocationsController.PostAsync(System.String,Airbox.Api.Resources.LocationResource)">
+            <summary>
+            Add a single location for the given user.
+            </summary>
+            <param name="username">Required user name string.</param>
+            <param name="location">A location object comprising a latitude, longitude and timestamp which are all required. </param>
+            <returns>A success/error response with the user/location in same format as it will be returned in get requests.</returns>
+        </member>
+        <member name="M:Airbox.Api.Domain.Services.AddUserLocationResponse.#ctor(Airbox.Api.Domain.Models.UserLocation)">
+            <summary>
+            Creates a success response.
+            </summary>
+            <param name="category">Saved category.</param>
+            <returns>Response.</returns>
+        </member>
+        <member name="M:Airbox.Api.Domain.Services.AddUserLocationResponse.#ctor(System.String)">
+            <summary>
+            Creates an error response.
+            </summary>
+            <param name="message">Error message.</param>
+            <returns>Response.</returns>
+        </member>
+    </members>
+</doc>

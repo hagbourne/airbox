@@ -16,7 +16,7 @@ namespace Airbox.Api.Repositories
             Seed();
         }
 
-        public async Task<IEnumerable<UserLocation>> ListCurrentAsync(string username)
+         public async Task<IEnumerable<UserLocation>> ListCurrentAsync(string username)
         {
             if (string.IsNullOrEmpty(username))
             {

@@ -17,19 +17,35 @@ namespace Airbox.Api.Services
             _locationRepository = locationRepository;
         }
 
-        public Task<UserLocation> AddUserLocationAsync(UserLocation userLocation)
+        public async Task<AddUserLocationResponse> AddUserLocationAsync(UserLocation userLocation)
         {
-            return _locationRepository.AddUserLocationAsync(userLocation);
+            UserLocation userLocationResult;
+
+            try
+            {
+                userLocationResult = await _locationRepository.AddUserLocationAsync(userLocation);
+            }
+            catch (Exception ex)
+            {
+                return new AddUserLocationResponse($"An error occurred when saving the user location: {ex.Message}");
+            }
+
+            return new AddUserLocationResponse(userLocationResult);
         }
 
-        public Task<IEnumerable<UserLocation>> ListCurrentAsync(string username)
+        public async Task<IEnumerable<UserLocation>> ListAllCurrentAsync()
         {
-            return _locationRepository.ListCurrentAsync(username);
+            return await _locationRepository.ListCurrentAsync(null);
         }
 
-        public Task<IEnumerable<UserLocation>> ListHistoryAsync(string username)
+        public async Task<IEnumerable<UserLocation>> ListCurrentAsync(string username)
         {
-            return _locationRepository.ListHistoryAsync(username);
+            return await _locationRepository.ListCurrentAsync(username);
+        }
+
+        public async Task<IEnumerable<UserLocation>> ListHistoryAsync(string username)
+        {
+            return await _locationRepository.ListHistoryAsync(username);
         }
     }
 }

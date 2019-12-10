@@ -8,10 +8,12 @@ namespace Airbox.Api.Domain.Services
 {
     public interface IUserLocationService
     {
+        Task<IEnumerable<UserLocation>> ListAllCurrentAsync();
+
         Task<IEnumerable<UserLocation>> ListCurrentAsync(string username);
 
         Task<IEnumerable<UserLocation>> ListHistoryAsync(string username);
 
-        Task<UserLocation> AddUserLocationAsync(UserLocation userLocation);
+        Task<AddUserLocationResponse> AddUserLocationAsync(UserLocation userLocation);
     }
 }
