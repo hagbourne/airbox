@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Airbox.Api.Domain.Repositories
 {
+    /// <summary>
+    /// Interface of user location persistence repository class.
+    /// </summary>
     public interface IUserLocationRepository
     {
         Task<IEnumerable<UserLocation>> ListCurrentAsync(string username);

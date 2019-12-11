@@ -2,6 +2,9 @@
 
 namespace Airbox.Api.Domain.Models
 {
+    /// <summary>
+    /// Data object for a single user location entry.
+    /// </summary>
     public class UserLocation
     {
         public string Username { get; set; }

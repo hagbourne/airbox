@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Airbox.Api.Resources
 {
+    /// <summary>
+    /// Data transfer object for a single location resource.
+    /// </summary>
     public class LocationResource
     {
         [Required]

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Airbox.Api.Domain.Services
 {
+    /// <summary>
+    /// Wrapper of user location response to add service operation.
+    /// </summary>
     public class AddUserLocationResponse : BaseResponse
     {
         public UserLocation UserLocation { get; private set; }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Airbox.Api.Domain.Services
 {
+    /// <summary>
+    /// Interface for user location service.
+    /// </summary>
     public interface IUserLocationService
     {
         Task<IEnumerable<UserLocation>> ListAllCurrentAsync();

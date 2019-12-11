@@ -15,8 +15,6 @@ namespace Airbox.Api.Controllers
     /// Read current and historic user locations, and add new user locations.
     /// </summary>
     [ApiController]
-//    [Route("api/v1/users/{username}/locations")]
-//    [Route("api/v1/users/locations")]
     [Route("api/v1/users")]
     public class UsersLocationsController : ControllerBase
     {
@@ -30,7 +28,7 @@ namespace Airbox.Api.Controllers
         }
 
         /// <summary>
-        /// Get a list of historic locations for a given user or get the current location of either the given user or for all users. Note that full history for all users is not supported so an empty list is returned.
+        /// Get a list of the current location of  all users.
         /// </summary>
         /// <returns>One or more users with a list of locations for each. Current locations are represented as a list with one entry.</returns>
         [HttpGet]
@@ -41,7 +39,7 @@ namespace Airbox.Api.Controllers
         }
 
         /// <summary>
-        /// Get a list of historic locations for a given user or get the current location of either the given user or for all users. Note that full history for all users is not supported so an empty list is returned.
+        /// Get a list of historic locations for a given user or get the current location of the given user. To obtain just the current location set "?current=1".
         /// </summary>
         /// <param name="username">A username matched as a case-sensitive string identifier.</param>
         /// <param name="current">An integer which when set to the value 1 causes only the current location to be returned. Otherwise, an ordered history is returned but only when a username is given.</param>

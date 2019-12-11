@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 
 namespace Airbox.Api.Repositories
 {
+    /// <summary>
+    /// An in-memory implementation of a user location repository to test the API in the absense of a true persitence layer.
+    /// </summary>
     public class InMemoryUserLocationRepository : IUserLocationRepository
     {
         private readonly IList<UserLocation> _userLocations = new List<UserLocation>();
 
-        public InMemoryUserLocationRepository()
-        {
-            Seed();
-        }
-
+         /// <summary>
+         /// Get a list of current (highest timestamp) locations for the given user, or for all users, from the repository.
+         /// </summary>
+         /// <param name="username">A username to match case-insensitively, or a null string to return all users.</param>
+         /// <returns>A list of user locations or an empty list.</returns>
          public async Task<IEnumerable<UserLocation>> ListCurrentAsync(string username)
         {
             if (string.IsNullOrEmpty(username))
@@ -30,6 +33,11 @@ namespace Airbox.Api.Repositories
             }
         }
 
+        /// <summary>
+        /// Get a list of all locations, ordered by timestamp for the given user, from the repository.
+        /// </summary>
+        /// <param name="username">A username to match case-insensitively.</param>
+        /// <returns>A list of user locations or an empty list.</returns>
         public async Task<IEnumerable<UserLocation>> ListHistoryAsync(string username)
         {
             if (string.IsNullOrEmpty(username))
@@ -43,16 +51,16 @@ namespace Airbox.Api.Repositories
             }
         }
 
+        /// <summary>
+        /// Add a populated user location to the repository.
+        /// </summary>
+        /// <param name="userLocation">A populated user location object.</param>
+        /// <returns>The user location object as added.</returns>
         public async Task<UserLocation> AddUserLocationAsync(UserLocation userLocation)
         {
             _userLocations.Add(userLocation);
 
             return userLocation;
-        }
-
-        private void Seed()
-        {
-            _userLocations.Add(new UserLocation() { Username = "Test", Latitude = 123.45, Longitude = -12.34, Timestamp = DateTime.Now });
         }
     }
 }
