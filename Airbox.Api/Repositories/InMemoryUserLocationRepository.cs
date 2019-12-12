@@ -24,7 +24,7 @@ namespace Airbox.Api.Repositories
             if (string.IsNullOrEmpty(username))
             {
                 // Return a location for all users grouped by username returning the first of each group reverse sorted by timestamp.
-                return _userLocations.GroupBy(u => u.Username, (k, g) => g.OrderByDescending(u => u.Timestamp).First());
+                return _userLocations.OrderBy(u => u.Username).GroupBy(u => u.Username, (k, g) => g.OrderByDescending(u => u.Timestamp).First());
             }
             else
             {
@@ -58,6 +58,12 @@ namespace Airbox.Api.Repositories
         /// <returns>The user location object as added.</returns>
         public async Task<UserLocation> AddUserLocationAsync(UserLocation userLocation)
         {
+            if (string.IsNullOrWhiteSpace(userLocation.Username))
+                throw new ArgumentException("Property 'Username' is a required field.", "userLocation");
+
+            if (null == userLocation.Timestamp)
+                throw new ArgumentException("Property 'Timestamp' is a required field.", "userLocation");
+
             _userLocations.Add(userLocation);
 
             return userLocation;

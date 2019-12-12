@@ -29,4 +29,4 @@ The architecture of the service is derived from recent work of mine.
 * The service in this case does little more than passthrough the service operations to repository actions but provides the location for further processing/validation.
 * The repository here is an in-memory repository as a simple `List<>` but in practice would be implemented over a persistent store.
 
-A dockerfile is present which will configure building of a container ready for hosting. For this example I have hosted as "Container Instance" in Azure.
+A dockerfile is present which will configure building of a container ready for hosting. For this example I have hosted as a "Container Instance" in Azure.
